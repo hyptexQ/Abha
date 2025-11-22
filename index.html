@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Clothing Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- SimpleCart -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplecartjs/3.0.5/simplecart.min.js"></script>
+
+<style>
+body {font-family: Arial, sans-serif; margin: 0; background: #fff; color: #111;}
+header {padding: 20px 40px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;}
+header h1 {margin: 0;}
+#cartBtn {background: black; color: white; padding: 10px 18px; border-radius: 30px; cursor: pointer;}
+.products {max-width: 1000px; margin: 40px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 25px;}
+.product {border: 1px solid #ddd; border-radius: 10px; padding: 15px; text-align: center;}
+.product img {width: 100%; border-radius: 10px;}
+.add-to-cart-btn {margin-top: 10px; display: inline-block; padding: 10px 15px; background: #111; color: white; border-radius: 25px; cursor: pointer;}
+
+#cart-modal {position: fixed; bottom: 0; right: 0; width: 350px; max-height: 90%; background: white;
+border-left: 1px solid #ddd; border-top: 1px solid #ddd; padding: 20px; overflow-y: auto; display: none; z-index: 9999;}
+#closeCart {float: right; cursor: pointer; font-size: 18px;}
+.checkout-btn {margin-top: 20px; width: 100%; padding: 12px; background: black; color: white; border-radius: 30px;
+display: block; text-align: center;}
+</style>
+
+<script>
+simpleCart({
+  checkout: {
+    type: "Stripe",
+    key: "pk_test_51SWGBv2NSLCUV7jve1qmc9mH4iEJeA3mJN4pb9b1JrHb5P7U5V3s2b6APkykPnxkwVUugUYATTftGQkbZEhFoun500XqhLeGXh"
+  },
+  currency: "USD",
+});
+</script>
+
+</head>
+<body>
+
+<header>
+  <h1>My Clothing Store</h1>
+  <div id="cartBtn">🛒 Cart <span class="simpleCart_quantity"></span></div>
+</header>
+
+<div class="products">
+
+  <div class="product simpleCart_shelfItem">
+    <img class="item_thumb" src="https://i.imgur.com/TxHjZtA.jpeg">
+    <h3 class="item_name">Black Hoodie</h3>
+    <p class="item_price">39.99</p>
+    <span class="add-to-cart-btn item_add">Add to Cart</span>
+  </div>
+
+  <div class="product simpleCart_shelfItem">
+    <img class="item_thumb" src="https://i.imgur.com/GN8YGNk.jpeg">
+    <h3 class="item_name">White Tee</h3>
+    <p class="item_price">19.99</p>
+    <span class="add-to-cart-btn item_add">Add to Cart</span>
+  </div>
+
+  <div class="product simpleCart_shelfItem">
+    <img class="item_thumb" src="https://i.imgur.com/edS3ZLS.jpeg">
+    <h3 class="item_name">Cargo Pants</h3>
+    <p class="item_price">49.99</p>
+    <span class="add-to-cart-btn item_add">Add to Cart</span>
+  </div>
+
+</div>
+
+<div id="cart-modal">
+  <span id="closeCart">✖</span>
+  <h2>Your Cart</h2>
+  <div class="simpleCart_items"></div>
+  <h3>Total: <span class="simpleCart_total"></span></h3>
+  <a href="javascript:;" class="checkout-btn simpleCart_checkout">Checkout</a>
+</div>
+
+<script>
+document.getElementById("cartBtn").onclick = () => {
+  document.getElementById("cart-modal").style.display = "block";
+};
+document.getElementById("closeCart").onclick = () => {
+  document.getElementById("cart-modal").style.display = "none";
+};
+</script>
+
+</body>
+</html>
